@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import DogDetails from "./DogDetails";
 
 /**this renders a list of all the dog info
@@ -11,21 +10,20 @@ import DogDetails from "./DogDetails";
  *
  * App -> DogList -> DogDetails
  */
-function DogList() {
-  const [dogList, setDogList] = useState(getDogList);
+function DogList({ dogList, getDogList }) {
 
-  async function getDogList() {
-    const response = await axios.get("http://localhost:5001/dogs");
-    const aDogList = promiseAll(response.data);
-    setDogList(aDogList);
-  }
-  console.log("Dog List", dogList);
   return (
-    <div className="DogList">
-      <h1>Dog List</h1>
-      {dogList.map(dog => <DogDetails dog={dog} />)}
-    </div>
-  );
+    <div className="DogListDisplay">
+      {dogList
+        ? (<div className="DogList">
+          <h1>Dog List</h1>
+          {dogList.map(dog => <DogDetails dog={dog}/>)}
+        </div>)
+        : (<button
+          className="btn-sm QuoteDisplay-button"
+          onClick={getDogList}>Show Dogs
+        </button>)}
+    </div>);
 }
 
 export default DogList;
