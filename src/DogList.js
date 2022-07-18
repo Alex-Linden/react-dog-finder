@@ -10,19 +10,14 @@ import DogDetails from "./DogDetails";
  *
  * App -> DogList -> DogDetails
  */
-function DogList({ dogList, getDogList }) {
+function DogList({ dogList }) {
 
   return (
     <div className="DogListDisplay">
-      {dogList
-        ? (<div className="DogList">
+      <div className="DogList">
           <h1>Dog List</h1>
-          {dogList.map(dog => <DogDetails dog={dog}/>)}
-        </div>)
-        : (<button
-          className="btn-sm QuoteDisplay-button"
-          onClick={getDogList}>Show Dogs
-        </button>)}
+          {dogList.map((dog, idx) => <DogDetails dog={dog} key={idx}/>)}
+      </div>
     </div>);
 }
 

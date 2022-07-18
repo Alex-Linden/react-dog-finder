@@ -9,8 +9,7 @@ function Nav({ dogs }) {
       {dogs.map((dog, idx) => (
         <Link key={idx} to={`/${dog.name}`}>
           {dog.name}
-        </Link>
-      )
+        </Link>)
       )}
     </nav>
   );
