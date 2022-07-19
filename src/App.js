@@ -8,10 +8,18 @@ import Nav from './Nav';
 import DogList from './DogList';
 import DogDetails from './DogDetails';
 
-
+/**app for getting list of dogs using axios get request
+ *
+ * props: none
+ *
+ * state: doglist => array of dogs [{name: "dog"...} ...]
+ *
+ * App -> {Nav, DogList, DogDetails}
+ */
 function App() {
   const [dogList, setDogList] = useState([]);
 
+  //TODO: docstring
   async function getDogList() {
     const response = await axios.get("http://localhost:5001/dogs");
     const aDogList = response.data;
@@ -28,8 +36,8 @@ function App() {
       <BrowserRouter>
         <Nav dogs={dogList} />
         <Routes>
-          <Route element={<DogList dogList={dogList}/>} path="/dogs" />
-          <Route element={<DogDetails/>} path="/dogs/:name" />
+          <Route element={<DogList dogList={dogList} />} path="/dogs" />
+          <Route element={<DogDetails dogList={dogList} />} path="/dogs/:name" />
         </Routes>
       </BrowserRouter>
     </div>
